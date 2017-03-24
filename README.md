@@ -32,8 +32,8 @@
 
 #### 用法说明
 
-1.
-该项目运行在 `python 2.7` 环境下，需要安装的第三方库列在 `requirements.txt` 中：
+1. 该项目运行在 `python 2.7` 环境下，需要安装的第三方库列在 `requirements.txt` 中：
+
 ```
 requests==2.12.3
 beautifulsoup4==4.3.2
@@ -46,8 +46,7 @@ prettytable==0.7.2
 pip install -r requirements.txt
 ```
 
-2.
-你可以将 `NetEaseMusicCrawl.py` 文件copy到你的目录下，然后通过以下两种方式使用：
+2. 你可以将 `NetEaseMusicCrawl.py` 文件copy到你的目录下，然后通过以下两种方式使用：
 
 ```python
 # Method 1
@@ -68,8 +67,7 @@ artist_list = get_artist_list(100)
 
 #### API说明
 
-1.
-爬取热门歌手列表(get_artist_list)
+1. 爬取热门歌手列表(get_artist_list)
 
 ```python
 def get_artist_list(limit=60, offset=0):
@@ -90,8 +88,7 @@ def get_artist_list(limit=60, offset=0):
 [{u'img1v1Url': u'http://p4.music.126.net/6xgsfT2ZLjdgzbwO4UiGwA==/3285340746016446.jpg', u'name': u'\u9648\u5955\u8fc5', u'briefDesc': u'', u'albumSize': 90, u'img1v1Id': 3285340746016446, u'musicSize': 1535, u'alias': [u'Eason Chan'], u'picId': 3287539769315193, u'picUrl': u'http://p4.music.126.net/XZrSQeNpsfjyRmibubCb9Q==/3287539769315193.jpg', u'id': 2116, u'trans': u'', u'topicPerson': 0}]
 ```
 
-2.
-爬取某个歌手的热门歌曲列表(get_song_list)
+2. 爬取某个歌手的热门歌曲列表(get_song_list)
 ```python
 def get_song_list(artist_id, limit=50):
     """
@@ -112,8 +109,7 @@ def get_song_list(artist_id, limit=50):
 [(u'\u966a\u4f60\u5ea6\u8fc7\u6f2b\u957f\u5c81\u6708', u'/song?id=35403523'), (u'\u4e0d\u8981\u8bf4\u8bdd', u'/song?id=25906124'), (u'\u7ea2\u73ab\u7470', u'/song?id=65126')]
 ```
 
-3.
-爬取某个歌曲的热门评论(get_hot_comments)
+3. 爬取某个歌曲的热门评论(get_hot_comments)
 ```python
 def get_hot_comments(song_id, threshold=COMMENT_THRESHOLD):
     """
@@ -134,8 +130,7 @@ def get_hot_comments(song_id, threshold=COMMENT_THRESHOLD):
 [[u'\u4e24\u5929\u524d \u9648\u5955\u8fc5\u5728\u58a8\u5c14\u672c\u5f00\u6f14\u5531\u4f1a \u5b89\u4e1c\u5c3c\u53d1\u5fae\u535a\u8bf4\u4ed6\u5728\u53f0\u4e0b\u542c\u7684\u611f\u6168\u4e07\u5206 \u5c31\u50cf\u505a\u4e86\u4e00\u573a\u68a6 \u4ed6\u7ec8\u4e8e\u5b8c\u6210\u4e86\u81ea\u5df1\u7684\u68a6 \u81ea\u5df1\u559c\u6b22\u7684\u6b4c\u624b\u4e3a\u4ed6\u7684\u4e66\u5531\u7684\u4e3b\u9898\u66f2 \u4f60\u6709\u68a6\u60f3\u4f60\u5c31\u8981\u634d\u536b\u5b83~', 64520], [u'\u6211\u4eec\u7528\u521d\u4e2d\u4e09\u5e74\u53bb\u76fc\u671b\u9ad8\u4e2d\u4e09\u5e74\uff0c\u6211\u4eec\u7528\u9ad8\u4e2d\u4e09\u5e74\u53bb\u61a7\u61ac\u5927\u5b66\u56db\u5e74\uff0c\u800c\u7528\u5927\u5b66\u56db\u5e74\u53bb\u6000\u5ff5\u4e2d\u5b66\u516d\u5e74\uff0c\u6700\u7ec8\u7528\u6211\u4eec\u7684\u4e00\u751f\u53bb\u796d\u5960\u6211\u4eec\u7684\u9752\u6625\u3002 \u5927\u5b78\u5373\u5c06\u7ed3\u675f\u8c01\u4f1a\u966a\u6211\u8d70\u4e0b\u4e00\u6bb5[\u7231\u5fc3][\u7231\u5fc3]', 60442]]
 ```
 
-4.
-爬取某个歌曲的最新评论(get_latest_comments)
+4. 爬取某个歌曲的最新评论(get_latest_comments)
 ```python
 def get_latest_comments(song_id, threshold=COMMENT_THRESHOLD):
     """
