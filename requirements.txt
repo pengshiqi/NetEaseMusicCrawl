@@ -1,0 +1,4 @@
+requests==2.12.3
+beautifulsoup4==4.3.2
+pycrypto==2.6.1
+prettytable==0.7.2
