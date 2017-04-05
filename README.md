@@ -8,9 +8,17 @@
 
 很惭愧，就做了这么一点微小的工作。
 
+---
+
+#### Demo
+
+直接运行`NetEaseMusicCrawl.py`可以得到如下爬取结果：
+
+![icon](./img/NetEaseMusic.png)
+
 ----
 
-#### 综述
+#### 函数列表
 
 `NetEaseMusicCrawl.py` 中实现了3个小爬虫，分别是：
 

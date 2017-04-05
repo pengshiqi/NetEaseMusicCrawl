@@ -168,7 +168,7 @@ if __name__ == "__main__":
 
         for song in song_list:
             print u'歌曲： {} 的热门评论有： '.format(song[0])
-            hot_comments = get_latest_comments(song[1][9:])
+            hot_comments = get_hot_comments(song[1][9:])
 
             x = PrettyTable([u'评论', u'点赞数'])
             x.padding_width = 1
