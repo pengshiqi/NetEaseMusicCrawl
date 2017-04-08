@@ -40,7 +40,7 @@
 
 #### 用法说明
 
-1. 该项目运行在 `python 2.7` 环境下，需要安装的第三方库列在 `requirements.txt` 中：
+1. 该项目运行在 `python 3.5` 环境下，需要安装的第三方库列在 `requirements.txt` 中：
 
 ```
 requests==2.12.3
@@ -68,7 +68,6 @@ artist_list = NetEaseMusicCrawl.get_artist_list(100)
 from NetEaseMusicCrawl import get_artist_list
 
 artist_list = get_artist_list(100)
-
 ```
 
 ----
@@ -165,3 +164,4 @@ def get_latest_comments(song_id, threshold=COMMENT_THRESHOLD):
 没有实现评论的翻页功能，目前每首歌只能爬取15条热门评论和20条最新评论。
 
 有兴趣的朋友可以自己做做看...
+

@@ -3,6 +3,7 @@
 import os
 import json
 import base64
+import codecs
 
 import requests
 from bs4 import BeautifulSoup
@@ -28,7 +29,7 @@ def create_secret_key(size):
     :param size:
     :return:
     """
-    return (''.join(map(lambda xx: (hex(ord(xx))[2:]), os.urandom(size))))[0:16]
+    return (''.join(map(lambda xx: (hex(xx)[2:]), os.urandom(size))))[0:16]
 
 
 def aes_encrypt(text, sec_key):
@@ -40,6 +41,8 @@ def aes_encrypt(text, sec_key):
     :return:
     """
     pad = 16 - len(text) % 16
+    if isinstance(text, bytes):
+        text = text.decode('utf-8')
     text += pad * chr(pad)
     encryptor = AES.new(sec_key, 2, '0102030405060708')
     cipher_text = encryptor.encrypt(text)
@@ -57,7 +60,9 @@ def rsa_encrypt(text, pub_key, modulus):
     :return:
     """
     text = text[::-1]
-    rs = int(text.encode('hex'), 16) ** int(pub_key, 16) % int(modulus, 16)
+    #rs = int(text.encode('hex'), 16) ** int(pub_key, 16) % int(modulus, 16)
+    rs = int(codecs.encode(text.encode('utf-8'), 'hex_codec'), 16) ** int(pub_key, 16) % \
+            int(modulus, 16)
     return format(rs, 'x').zfill(256)
 
 
@@ -78,7 +83,7 @@ def get_artist_list(limit=60, offset=0):
     enc_sec_key = rsa_encrypt(sec_key, PUBKEY, MODULUS)
     data = {'params': enc_text, 'encSecKey': enc_sec_key, 'limit': limit, 'offset': offset}
     req = requests.post(url, headers=headers, data=data)
-    data = json.loads(req.content)
+    data = json.loads(req.content.decode('utf-8'))
     return data['artists']
 
 
@@ -123,7 +128,7 @@ def get_hot_comments(song_id, threshold=COMMENT_THRESHOLD):
     data = {'params': enc_text, 'encSecKey': enc_sec_key}
     req = requests.post(url, headers=headers, data=data)
 
-    data = json.loads(req.content)['hotComments']
+    data = json.loads(req.content.decode('utf-8'))['hotComments']
 
     res = []
     for item in data:
@@ -163,15 +168,15 @@ def get_latest_comments(song_id, threshold=COMMENT_THRESHOLD):
 if __name__ == "__main__":
     artist_list = get_artist_list(3)
     for artist in artist_list:
-        print u'### 歌手： {} 的热门歌曲的热门评论如下： ###'.format(artist['name'])
+        print(u'### 歌手： {} 的热门歌曲的热门评论如下：###'.format(artist['name']))
         song_list = get_song_list(artist['id'])
 
         for song in song_list:
-            print u'歌曲： {} 的热门评论有： '.format(song[0])
+            print(u'歌曲： {} 的热门评论有： '.format(song[0]))
             hot_comments = get_hot_comments(song[1][9:])
 
             x = PrettyTable([u'评论', u'点赞数'])
             x.padding_width = 1
             for item in hot_comments:
                 x.add_row(item)
-            print x
+            print(x)
